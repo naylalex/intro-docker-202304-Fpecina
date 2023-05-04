@@ -1,0 +1,22 @@
+version : "3.3"
+
+services:
+  db:
+    build: 
+      context: ./wordsmith/db
+      dockerfile: Dockerfile
+  
+  web:
+    build:
+      context: ./wordsmith/web
+      dockerfile: Dockerfile
+    depends_on:
+      - words
+  
+  words:
+    build:
+      context: ./wordsmith/words
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    
